@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: dsc-ambulance-webapi
+  name: dsc-hgui-webapi
 spec:
   selector:
-    pod: dsc-ambulance-webapi-label
+    pod: dsc-hgui-webapi-label
   ports:
   - name: http
     protocol: TCP

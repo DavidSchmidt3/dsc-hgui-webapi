@@ -1,11 +1,11 @@
-const mongoHost = process.env.AMBULANCE_API_MONGODB_HOST;
-const mongoPort = process.env.AMBULANCE_API_MONGODB_PORT;
+const mongoHost = process.env.HGUI_API_MONGODB_HOST;
+const mongoPort = process.env.HGUI_API_MONGODB_PORT;
 
-const mongoUser = process.env.AMBULANCE_API_MONGODB_USERNAME;
-const mongoPassword = process.env.AMBULANCE_API_MONGODB_PASSWORD;
+const mongoUser = process.env.HGUI_API_MONGODB_USERNAME;
+const mongoPassword = process.env.HGUI_API_MONGODB_PASSWORD;
 
-const database = process.env.AMBULANCE_API_MONGODB_DATABASE;
-const collection = process.env.AMBULANCE_API_MONGODB_COLLECTION;
+const database = process.env.HGUI_API_MONGODB_DATABASE;
+const collection = process.env.HGUI_API_MONGODB_COLLECTION;
 
 const retrySeconds = parseInt(process.env.RETRY_CONNECTION_SECONDS || "5") || 5;
 

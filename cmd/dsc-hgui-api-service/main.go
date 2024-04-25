@@ -9,19 +9,19 @@ import (
 	"time"
 
 	"github.com/DavidSchmidt3/dsc-hgui-webapi/api"
-	"github.com/DavidSchmidt3/dsc-hgui-webapi/internal/ambulance_wl"
 	"github.com/DavidSchmidt3/dsc-hgui-webapi/internal/db_service"
+	hgui_api "github.com/DavidSchmidt3/dsc-hgui-webapi/internal/hgui-webapi"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	log.Printf("Server started")
-	port := os.Getenv("AMBULANCE_API_PORT")
+	port := os.Getenv("HGUI_API_PORT")
 	if port == "" {
 		port = "8080"
 	}
-	environment := os.Getenv("AMBULANCE_API_ENVIRONMENT")
+	environment := os.Getenv("HGUI_API_ENVIRONMENT")
 	if !strings.EqualFold(environment, "production") { // case insensitive comparison
 		gin.SetMode(gin.DebugMode)
 	}
@@ -37,7 +37,7 @@ func main() {
 	})
 	engine.Use(corsMiddleware)
 
-	dbService := db_service.NewMongoService[ambulance_wl.Ambulance](db_service.MongoServiceConfig{})
+	dbService := db_service.NewMongoService[hgui_api.Ambulance](db_service.MongoServiceConfig{})
 	defer dbService.Disconnect(context.Background())
 	engine.Use(func(ctx *gin.Context) {
 		ctx.Set("db_service", dbService)
@@ -45,7 +45,7 @@ func main() {
 	})
 
 	// request routings
-	ambulance_wl.AddRoutes(engine)
+	hgui_api.AddRoutes(engine)
 	engine.GET("/openapi", api.HandleOpenApi)
 	engine.Run(":" + port)
 }

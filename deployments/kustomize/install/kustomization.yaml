@@ -6,17 +6,17 @@ resources:
 - service.yaml
 
 configMapGenerator:
-  - name: dsc-ambulance-webapi-mongodb-init
+  - name: dsc-hgui-webapi-mongodb-init
     files:
       - params/init-db.js
-  - name: dsc-ambulance-webapi-config
+  - name: dsc-hgui-webapi-config
     literals:
-      - database=dsc-ambulance
-      - collection=ambulance
+      - database=dsc-hgui
+      - collection=hgui
 patches:
  - path: patches/webapi.deployment.yaml
    target:
      group: apps
      version: v1
      kind: Deployment
-     name: dsc-ambulance-webapi
+     name: dsc-hgui-webapi

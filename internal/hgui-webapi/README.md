@@ -1,4 +1,4 @@
-# Go API Server for ambulance_wl
+# Go API Server for dsc-hgui-webapi
 
 Ambulance Waiting List management for Web-In-Cloud system
 
@@ -26,12 +26,12 @@ go run main.go
 
 To run the server in a docker container
 ```
-docker build --network=host -t ambulance_wl .
+docker build --network=host -t dsc-hgui-webapi .
 ```
 
 Once the image is built, just run
 ```
-docker run --rm -it ambulance_wl
+docker run --rm -it dsc-hgui-webapi
 ```
 
 ### Known Issue

@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dsc-ambulance-webapi
+  name: dsc-hgui-webapi
 spec:
   replicas: 1
   selector:
       matchLabels:
-        pod: dsc-ambulance-webapi-label
+        pod: dsc-hgui-webapi-label
   template:
       metadata:
         labels:
-          pod: dsc-ambulance-webapi-label
+          pod: dsc-hgui-webapi-label
       spec:
         containers:
         - name: dsc-hgui-webapi-webapi-container
@@ -20,29 +20,29 @@ spec:
           - name: webapi-port
             containerPort: 8080
           env:
-            - name: AMBULANCE_API_ENVIRONMENT
+            - name: HGUI_API_ENVIRONMENT
               value: production
-            - name: AMBULANCE_API_PORT
+            - name: HGUI_API_PORT
               value: "8080"
-            - name: AMBULANCE_API_MONGODB_HOST
+            - name: HGUI_API_MONGODB_HOST
               value: mongodb
-            - name: AMBULANCE_API_MONGODB_PORT
+            - name: HGUI_API_MONGODB_PORT
               value: "27017"
-            - name: AMBULANCE_API_MONGODB_USERNAME
+            - name: HGUI_API_MONGODB_USERNAME
               value: ""
-            - name: AMBULANCE_API_MONGODB_PASSWORD
+            - name: HGUI_API_MONGODB_PASSWORD
               value: ""
-            - name: AMBULANCE_API_MONGODB_DATABASE
+            - name: HGUI_API_MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
-                  name: dsc-ambulance-webapi-config
+                  name: dsc-hgui-webapi-config
                   key: database
-            - name: AMBULANCE_API_MONGODB_COLLECTION
+            - name: HGUI_API_MONGODB_COLLECTION
               valueFrom:
                 configMapKeyRef:
-                  name: dsc-ambulance-webapi-config
+                  name: dsc-hgui-webapi-config
                   key: collection
-            - name: AMBULANCE_API_MONGODB_TIMEOUT_SECONDS
+            - name: HGUI_API_MONGODB_TIMEOUT_SECONDS
               value: "5"
           resources:
             requests:
@@ -78,7 +78,7 @@ spec:
         volumes:
         - name: init-scripts
           configMap:
-            name: dsc-ambulance-webapi-mongodb-init
+            name: dsc-hgui-webapi-mongodb-init
         initContainers:
         - name: init-mongodb
           image: mongo:latest
@@ -88,25 +88,25 @@ spec:
           - name: init-scripts
             mountPath: /scripts
           env:
-             - name: AMBULANCE_API_PORT
+             - name: HGUI_API_PORT
                value: "8080"
-             - name: AMBULANCE_API_MONGODB_HOST
+             - name: HGUI_API_MONGODB_HOST
                value: mongodb
-             - name: AMBULANCE_API_MONGODB_PORT
+             - name: HGUI_API_MONGODB_PORT
                value: "27017"
-             - name: AMBULANCE_API_MONGODB_USERNAME
+             - name: HGUI_API_MONGODB_USERNAME
                value: ""
-             - name: AMBULANCE_API_MONGODB_PASSWORD
+             - name: HGUI_API_MONGODB_PASSWORD
                value: ""
-             - name: AMBULANCE_API_MONGODB_DATABASE
+             - name: HGUI_API_MONGODB_DATABASE
                valueFrom:
                  configMapKeyRef:
-                   name: dsc-ambulance-webapi-config
+                   name: dsc-hgui-webapi-config
                    key: database
-             - name: AMBULANCE_API_MONGODB_COLLECTION
+             - name: HGUI_API_MONGODB_COLLECTION
                valueFrom:
                  configMapKeyRef:
-                   name: dsc-ambulance-webapi-config
+                   name: dsc-hgui-webapi-config
                    key: collection
              - name: RETRY_CONNECTION_SECONDS
                value: "5"

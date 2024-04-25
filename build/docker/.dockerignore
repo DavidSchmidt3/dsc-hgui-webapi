@@ -1,3 +1,3 @@
-internal/ambulance_wl/api_*
-internal/ambulance_wl/model_*
-internal/ambulance_wl/routers.go
+internal/hgui-webapi/api_*
+internal/hgui-webapi/model_*
+internal/hgui-webapi/routers.go

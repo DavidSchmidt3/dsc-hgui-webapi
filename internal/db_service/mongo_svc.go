@@ -54,11 +54,11 @@ func NewMongoService[DocType interface{}](config MongoServiceConfig) DbService[D
 	svc.MongoServiceConfig = config
 
 	if svc.ServerHost == "" {
-		svc.ServerHost = enviro("AMBULANCE_API_MONGODB_HOST", "localhost")
+		svc.ServerHost = enviro("HGUI_API_MONGODB_HOST", "localhost")
 	}
 
 	if svc.ServerPort == 0 {
-		port := enviro("AMBULANCE_API_MONGODB_PORT", "27017")
+		port := enviro("HGUI_API_MONGODB_PORT", "27017")
 		if port, err := strconv.Atoi(port); err == nil {
 			svc.ServerPort = port
 		} else {
@@ -68,23 +68,23 @@ func NewMongoService[DocType interface{}](config MongoServiceConfig) DbService[D
 	}
 
 	if svc.UserName == "" {
-		svc.UserName = enviro("AMBULANCE_API_MONGODB_USERNAME", "")
+		svc.UserName = enviro("HGUI_API_MONGODB_USERNAME", "")
 	}
 
 	if svc.Password == "" {
-		svc.Password = enviro("AMBULANCE_API_MONGODB_PASSWORD", "")
+		svc.Password = enviro("HGUI_API_MONGODB_PASSWORD", "")
 	}
 
 	if svc.DbName == "" {
-		svc.DbName = enviro("AMBULANCE_API_MONGODB_DATABASE", "dsc-hgui-webapi")
+		svc.DbName = enviro("HGUI_API_MONGODB_DATABASE", "dsc-hgui-webapi")
 	}
 
 	if svc.Collection == "" {
-		svc.Collection = enviro("AMBULANCE_API_MONGODB_COLLECTION", "ambulance")
+		svc.Collection = enviro("HGUI_API_MONGODB_COLLECTION", "hgui")
 	}
 
 	if svc.Timeout == 0 {
-		seconds := enviro("AMBULANCE_API_MONGODB_TIMEOUT_SECONDS", "10")
+		seconds := enviro("HGUI_API_MONGODB_TIMEOUT_SECONDS", "10")
 		if seconds, err := strconv.Atoi(seconds); err == nil {
 			svc.Timeout = time.Duration(seconds) * time.Second
 		} else {

@@ -1,4 +1,4 @@
-module github.com/DavidSchmidt3/ambulance-webapi
+module github.com/DavidSchmidt3/dsc-hgui-webapi
 
 go 1.21.0
 
