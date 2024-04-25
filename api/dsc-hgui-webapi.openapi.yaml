@@ -11,9 +11,14 @@ info:
   license:
     name: CC BY 4.0
     url: "https://creativecommons.org/licenses/by/4.0/"
+tags:
+ - name: testHospital
+   description: Ambulance test
 paths:
   "/test":
     get:
+      tags:
+       - testHospital
       summary: Test endpoint
       operationId: test
       responses:
