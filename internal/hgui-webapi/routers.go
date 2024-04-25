@@ -11,15 +11,9 @@
 package hgui_webapi
 
 import (
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func AddRoutes(engine *gin.Engine) {
-  group := engine.Group("/api")
-  
-  {
-    api := newDefaultAPI()
-    api.addRoutes(group)
-  }
-  
+	// group := engine.Group("/api")
 }
