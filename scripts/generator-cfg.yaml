@@ -1,8 +1,8 @@
 generatorName: go-gin-server
 templateDir: /local/scripts/templates
 outputDir: /local
-inputSpec: /local/api/hgui-webapi.openapi.yaml
+inputSpec: /local/api/dsc-hgui-webapi.openapi.yaml
 enablePostProcessFile: true
 additionalProperties:
-  apiPath: internal/hgui_webapi
+  apiPath: internal/hgui-webapi
   packageName: hgui_webapi

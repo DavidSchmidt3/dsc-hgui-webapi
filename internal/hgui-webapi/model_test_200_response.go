@@ -10,16 +10,7 @@
 
 package hgui_webapi
 
-import (
-    "github.com/gin-gonic/gin"
-)
+type Test200Response struct {
 
-func AddRoutes(engine *gin.Engine) {
-  group := engine.Group("/api")
-  
-  {
-    api := newDefaultAPI()
-    api.addRoutes(group)
-  }
-  
+	Message string `json:"message,omitempty"`
 }

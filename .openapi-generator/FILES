@@ -1,5 +1,4 @@
 internal/hgui-webapi/README.md
-internal/hgui-webapi/model_ambulance.go
-internal/hgui-webapi/model_condition.go
-internal/hgui-webapi/model_waiting_list_entry.go
+internal/hgui-webapi/api_default.go
+internal/hgui-webapi/model_test_200_response.go
 internal/hgui-webapi/routers.go

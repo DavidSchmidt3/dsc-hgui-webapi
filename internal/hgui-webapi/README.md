@@ -1,4 +1,4 @@
-# Go API Server for dsc-hgui-webapi
+# Go API Server for hgui_webapi
 
 Ambulance Waiting List management for Web-In-Cloud system
 
@@ -13,7 +13,7 @@ To see how to make this your own, look here:
 [README](https://openapi-generator.tech)
 
 - API version: 1.0.0
-- Build date: 2024-03-26T10:11:49.697378006Z[Etc/UTC]
+- Build date: 2024-04-25T15:42:15.660879419Z[Etc/UTC]
 - Generator version: 7.5.0-SNAPSHOT
 
 ### Running the server
@@ -26,12 +26,12 @@ go run main.go
 
 To run the server in a docker container
 ```
-docker build --network=host -t dsc-hgui-webapi .
+docker build --network=host -t hgui_webapi .
 ```
 
 Once the image is built, just run
 ```
-docker run --rm -it dsc-hgui-webapi
+docker run --rm -it hgui_webapi
 ```
 
 ### Known Issue
