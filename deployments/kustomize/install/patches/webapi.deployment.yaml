@@ -33,7 +33,7 @@ spec:
                   name: mongodb-auth
                   key: password
       containers:
-        - name: dsc-ambulance-wl-webapi-container
+        - name: dsc-hgui-webapi-webapi-container
           env:
             - name: AMBULANCE_API_MONGODB_HOST
               value: null

@@ -13,8 +13,8 @@ spec:
           pod: dsc-ambulance-webapi-label
       spec:
         containers:
-        - name: dsc-ambulance-wl-webapi-container
-          image: davidschmidt38/ambulance-wl-webapi:latest
+        - name: dsc-hgui-webapi-webapi-container
+          image: davidschmidt38/hgui-webapi-webapi:latest
           imagePullPolicy: Always
           ports:
           - name: webapi-port
