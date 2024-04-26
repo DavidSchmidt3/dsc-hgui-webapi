@@ -33,7 +33,7 @@ spec:
                   name: mongodb-auth
                   key: password
       containers:
-        - name: dsc-hgui-webapi-webapi-container
+        - name: dsc-hgui-webapi-container
           env:
             - name: HGUI_API_MONGODB_HOST
               value: null

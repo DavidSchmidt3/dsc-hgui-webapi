@@ -13,8 +13,8 @@ spec:
           pod: dsc-hgui-webapi-label
       spec:
         containers:
-        - name: dsc-hgui-webapi-webapi-container
-          image: davidschmidt38/hgui-webapi-webapi:latest
+        - name: dsc-hgui-webapi-container
+          image: davidschmidt38/dsc-hgui-webapi:latest
           imagePullPolicy: Always
           ports:
           - name: webapi-port

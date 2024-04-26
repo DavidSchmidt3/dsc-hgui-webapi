@@ -21,7 +21,7 @@ switch ($command) {
         docker run --rm -ti -v ${ProjectRoot}:/local openapitools/openapi-generator-cli generate -c /local/scripts/generator-cfg.yaml
     }
     "docker" {
-        docker build -t davidschmidt38/hgui-webapi-webapi:local-build -f ${ProjectRoot}/build/docker/Dockerfile .
+        docker build -t davidschmidt38/dsc-hgui-webapi:local-build -f ${ProjectRoot}/build/docker/Dockerfile .
     }
     "test" {
         go test -v ./...
