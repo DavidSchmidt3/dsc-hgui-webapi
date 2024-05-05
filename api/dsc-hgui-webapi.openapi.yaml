@@ -3,32 +3,266 @@ servers:
   - description: Cluster Endpoint
     url: /api
 info:
-  description: Ambulance Waiting List management for Web-In-Cloud system
+  description: Hospital guidance API
   version: "1.0.0"
-  title: Waiting List Api
+  title: Hospital guidance API
   contact:
     email: xschmidtd@stuba.sk
   license:
     name: CC BY 4.0
     url: "https://creativecommons.org/licenses/by/4.0/"
 tags:
- - name: testHospital
-   description: Ambulance test
+ - name: hospitalGuidanceList
+   description: Hospital guidance list
 paths:
-  "/test":
+  "/guidance-list/{ambulanceId}":
     get:
       tags:
-       - testHospital
-      summary: Test endpoint
-      operationId: test
+        - hospitalGuidanceList
+      summary: Get hospital guidance list
+      operationId: getHospitalGuidanceList
+      description: Get hospital guidance list for ambulance
+      parameters:
+        - name: ambulanceId
+          in: path
+          description: Ambulance ID
+          required: true
+          schema:
+            type: string
       responses:
-        "200":
+        '200':
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Hello, World!"
+                type: array
+                items:
+                  $ref: '#/components/schemas/GuidanceEntry'
+              examples:
+                response:
+                  $ref: '#/components/examples/guidanceListExample'
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+  "/guidance-list/{ambulanceId}/{guidanceId}":
+    get:
+      tags:
+        - hospitalGuidanceList
+      summary: Get hospital guidance
+      operationId: getHospitalGuidance
+      description: Get hospital guidance for ambulance
+      parameters:
+        - name: ambulanceId
+          in: path
+          description: Ambulance ID
+          required: true
+          schema:
+            type: string
+        - name: guidanceId
+          in: path
+          description: Guidance ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuidanceEntry'
+              examples:
+                response:
+                  $ref: '#/components/examples/guidanceEntryExample'
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+    post:
+      tags:
+        - hospitalGuidanceList
+      summary: Create hospital guidance
+      operationId: createHospitalGuidance
+      description: Create hospital guidance for patient for ambulance
+      parameters:
+        - name: ambulanceId
+          in: path
+          description: Ambulance ID
+          required: true
+          schema:
+            type: string
+        - name: guidanceId
+          in: path
+          description: Guidance id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuidanceEntry'
+            examples:
+              response:
+                $ref: '#/components/examples/guidanceEntryExample'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+    put:
+      tags:
+        - hospitalGuidanceList
+      summary: Update hospital guidance
+      operationId: updateHospitalGuidance
+      description: Update hospital guidance for ambulance
+      parameters:
+        - name: ambulanceId
+          in: path
+          description: Ambulance ID
+          required: true
+          schema:
+            type: string
+        - name: guidanceId
+          in: path
+          description: Guidance ID
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuidanceEntry'
+            examples:
+              response:
+                $ref: '#/components/examples/guidanceEntryExample'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+    delete:
+      tags:
+        - hospitalGuidanceList
+      summary: Delete hospital guidance
+      operationId: deleteHospitalGuidance
+      description: Delete hospital guidance for ambulance
+      parameters:
+        - name: ambulanceId
+          in: path
+          description: Ambulance ID
+          required: true
+          schema:
+            type: string
+        - name: guidanceId
+          in: path
+          description: Guidance ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    GuidanceEntry:
+      type: object
+      required: [id, patientName, title, ambulanceId, description, severity, createdAt]
+      properties:
+        id:
+          type: string
+          example: "b82367c2-7c32-4988-82fd-1e2073f25c9c"
+          description: Guidance ID
+        patientName:
+          type: string
+          example: "Janko Hrasko"
+          description: Name of the patient
+        title:
+          type: string
+          example: "Narazena noha"
+          description: Title of the guidance
+        ambulanceId:
+          type: string
+          example: "b8569eee-873a-40ca-9c09-e8c72445e876"
+          description: Ambulance ID
+        description:
+          type: string
+          example: "Spadol som zo schodov a mam narazenu nohu, opuchnutu a velmi ma boli"
+          description: Description of the guidance
+        severity:
+          type: string
+          enum: [low, medium, high]
+          example: "medium"
+          description: Severity of the guidance
+        createdAt:
+          type: string
+          format: date-time
+          example: "2021-05-01T12:00:00Z"
+          description: Date and time of the guidance creation
+        response:
+          type: string
+          example: "V ktorom mieste presne mate bolesti?"
+          description: Response from the hospital doctor
+        email:
+          type: string
+          example: "sompacient@pacient.sk"
+        phoneNumber:
+          type: string
+          example: "+421123456789"
+  examples:
+    guidanceEntryExample:
+      summary: Example of the guidance entry
+      description: Example of the guidance entry for ambulance
+      value:
+        id: "b82367c2-7c32-4988-82fd-1e2073f25c9c"
+        patientName: "Janko Hrasko"
+        title: "Narazena noha"
+        ambulanceId: "1"
+        description: "Spadol som zo schodov a mam narazenu nohu, opuchnutu a velmi ma boli"
+        severity: "medium"
+        createdAt: "2021-05-01T12:00:00Z"
+        response: "V ktorom mieste presne mate bolesti?"
+        email: "pacient@pacient.sk"
+    guidanceListExample:
+      summary: Example of the guidance list
+      description: Example of the guidance list for ambulance
+      value:
+        - id: "b82367c2-7c32-4988-82fd-1e2073f25c9c"
+          patientName: "Janko Hrasko"
+          title: "Narazena noha"
+          ambulanceId: "1"
+          description: "Spadol som zo schodov a mam narazenu nohu, opuchnutu a velmi ma boli"
+          severity: "medium"
+          createdAt: "2021-05-01T12:00:00Z"
+          response: "V ktorom mieste presne mate bolesti?"
+          email: "sompacient@pacient.sk"
+        - id: "2b70a6fa-5653-444c-9b9c-f363f24ff5f7"
+          patientName: "Ferko Mrkvicka"
+          title: "Zlomena ruka"
+          ambulanceId: "1"
+          description: "Zlomil som si ruku pri padnuti na bicykli"
+          severity: "high"
+          createdAt: "2021-05-01T12:00:00Z"
+          response: "Kde presne mate bolesti?"
+          phoneNumber: "+421123456789"
