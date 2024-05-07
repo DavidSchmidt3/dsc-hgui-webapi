@@ -37,7 +37,7 @@ func main() {
 	})
 	engine.Use(corsMiddleware)
 
-	dbService := db_service.NewMongoService[hgui_api.Test200Response](db_service.MongoServiceConfig{})
+	dbService := db_service.NewMongoService[hgui_api.HospitalGuidanceListAPI](db_service.MongoServiceConfig{})
 	defer dbService.Disconnect(context.Background())
 	engine.Use(func(ctx *gin.Context) {
 		ctx.Set("db_service", dbService)

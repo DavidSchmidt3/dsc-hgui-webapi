@@ -1,4 +1,4 @@
 internal/hgui-webapi/README.md
-internal/hgui-webapi/api_test_hospital.go
-internal/hgui-webapi/model_test_200_response.go
+internal/hgui-webapi/api_hospital_guidance_list.go
+internal/hgui-webapi/model_guidance_entry.go
 internal/hgui-webapi/routers.go

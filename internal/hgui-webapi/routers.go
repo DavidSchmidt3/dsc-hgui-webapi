@@ -1,7 +1,7 @@
 /*
- * Waiting List Api
+ * Hospital guidance API
  *
- * Ambulance Waiting List management for Web-In-Cloud system
+ * Hospital guidance API
  *
  * API version: 1.0.0
  * Contact: xschmidtd@stuba.sk
@@ -18,7 +18,7 @@ func AddRoutes(engine *gin.Engine) {
   group := engine.Group("/api")
   
   {
-    api := newTestHospitalAPI()
+    api := newHospitalGuidanceListAPI()
     api.addRoutes(group)
   }
   
