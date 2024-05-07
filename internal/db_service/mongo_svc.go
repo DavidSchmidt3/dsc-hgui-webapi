@@ -77,11 +77,11 @@ func NewMongoService[DocType interface{}](config MongoServiceConfig) DbService[D
 	}
 
 	if svc.DbName == "" {
-		svc.DbName = enviro("HGUI_API_MONGODB_DATABASE", "dsc-hgui-webapi")
+		svc.DbName = enviro("HGUI_API_MONGODB_DATABASE", "dsc-hgui")
 	}
 
 	if svc.Collection == "" {
-		svc.Collection = enviro("HGUI_API_MONGODB_COLLECTION", "hgui")
+		svc.Collection = enviro("HGUI_API_MONGODB_COLLECTION", "guidance")
 	}
 
 	if svc.Timeout == 0 {
