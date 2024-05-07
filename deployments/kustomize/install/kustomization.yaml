@@ -12,7 +12,7 @@ configMapGenerator:
   - name: dsc-hgui-webapi-config
     literals:
       - database=dsc-hgui
-      - collection=hgui
+      - collection=guidance
 patches:
  - path: patches/webapi.deployment.yaml
    target:
