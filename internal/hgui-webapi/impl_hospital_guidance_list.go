@@ -1,6 +1,7 @@
 package hgui_webapi
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/DavidSchmidt3/dsc-hgui-webapi/internal/db_service"
@@ -21,6 +22,8 @@ func (this *implHospitalGuidanceListAPI) CreateHospitalGuidance(ctx *gin.Context
 		return
 	}
 
+	// print
+	fmt.Println(value)
 	db, ok := value.(db_service.DbService[GuidanceEntry])
 	if !ok {
 		ctx.JSON(
