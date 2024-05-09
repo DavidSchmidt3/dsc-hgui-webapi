@@ -24,7 +24,7 @@ func (this *implHospitalGuidanceListAPI) CreateHospitalGuidance(ctx *gin.Context
 
 	// print
 	fmt.Println(value)
-	db, ok := value.(*db_service.DbService[GuidanceEntry])
+	db, ok := value.(db_service.DbService[GuidanceEntry])
 	fmt.Println(db, ok)
 	if !ok {
 		ctx.JSON(
