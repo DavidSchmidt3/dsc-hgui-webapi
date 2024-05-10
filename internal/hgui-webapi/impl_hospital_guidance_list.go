@@ -1,7 +1,6 @@
 package hgui_webapi
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/DavidSchmidt3/dsc-hgui-webapi/internal/db_service"
@@ -22,10 +21,7 @@ func (this *implHospitalGuidanceListAPI) CreateHospitalGuidance(ctx *gin.Context
 		return
 	}
 
-	// print
-	fmt.Println(value)
 	db, ok := value.(db_service.DbService[GuidanceEntry])
-	fmt.Println(db, ok)
 	if !ok {
 		ctx.JSON(
 			http.StatusInternalServerError,
@@ -110,7 +106,7 @@ func (this *implHospitalGuidanceListAPI) DeleteHospitalGuidance(ctx *gin.Context
 		return
 	}
 
-	id := ctx.Param("id")
+	id := ctx.Param("guidanceId")
 	err := db.DeleteDocument(ctx, id)
 
 	switch err {
@@ -165,7 +161,7 @@ func (this *implHospitalGuidanceListAPI) GetHospitalGuidance(ctx *gin.Context) {
 		return
 	}
 
-	id := ctx.Param("id")
+	id := ctx.Param("guidanceId")
 	guidance, err := db.FindDocument(ctx, id)
 
 	switch err {
@@ -265,7 +261,7 @@ func (this *implHospitalGuidanceListAPI) UpdateHospitalGuidance(ctx *gin.Context
 		return
 	}
 
-	id := ctx.Param("id")
+	id := ctx.Param("guidanceId")
 	guidance := GuidanceEntry{}
 	err := ctx.BindJSON(&guidance)
 
